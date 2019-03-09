@@ -5,3 +5,10 @@
 开发语言：C++  <br>
 计算器核心代码使用逆波兰算法  <br>
 参考自：CSDN https://blog.csdn.net/wanzhen4330/article/details/81952851
+
+
+## Update version 1.0.1
+
+1. 禁用了最大化按钮 <br>
+
+2. 增加了阶乘的功能  <br>
