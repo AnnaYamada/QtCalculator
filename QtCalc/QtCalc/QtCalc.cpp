@@ -133,6 +133,16 @@ void QtCalc::on_pushButton_parR_clicked()
 	ui.textEdit->insertPlainText(")");
 }
 
+//---------------------------------------------------------------------------------
+//n!直接计算//计算阶乘
+void QtCalc::on_pushButton_nn_clicked()
+{
+	express[i] = '!'; i++;
+	ui.textEdit->moveCursor(QTextCursor::End);
+	ui.textEdit->insertPlainText("!");
+
+}
+
 void QtCalc::on_pushButton_C_clicked()
 {
 	ui.textEdit->clear();
@@ -172,6 +182,7 @@ void QtCalc::on_pushButton_back_clicked()
 
 }
 
+//----------------------------------------------------------------------------
 void QtCalc::on_pushButton_equal_clicked()
 {
 
@@ -181,18 +192,36 @@ void QtCalc::on_pushButton_equal_clicked()
 	ui.textEdit->append(express);
 	ui.textEdit->moveCursor(QTextCursor::End);
 	ui.textEdit->insertPlainText("=");
-	//express转为数字表达式
-	//0:48 9:57
-	//+:43           -:45            *:42          /:47
 
-	//一次计算
 	double sum;
-	cal.Infix2Postfix(express, Postfix);
-	sum = cal.Calculation(Postfix);
-	printf("最终计算结果为：%f\n\n", sum);
-	QString sum_string = QString::number(sum, 'g', 5); //5 小数精度
-	//string sum_string = to_string(sum);//X可以使int float double 等类型
+	//阶乘
+	char nn_express[100] = { 0 };
+	if(express[i-1] == '!')
+	{ 
+		//去掉!号
+		for (int k = 0; k < i-1; k++)
+		{
+			nn_express[k]= express[k];
+		}
+		long a = atoi(nn_express);
+		sum = 1;
+		//计算阶乘
+		for (int k = 1; k <= a; k++)
+		{
+			sum = sum * k;
+		}
+		//QString sum_string = QString::number(sum, 'g', 5); //5 小数精度
+	}
+	else
+	{
+		//一次计算
+		cal.Infix2Postfix(express, Postfix);
+		sum = cal.Calculation(Postfix);
+		//printf("最终计算结果为：%f\n\n", sum);
+		
+	}
 
+	QString sum_string = QString::number(sum, 'g', 5); //5 小数精度
 	//显示
 	ui.textEdit->clear();
 	ui.textEdit->moveCursor(QTextCursor::End);

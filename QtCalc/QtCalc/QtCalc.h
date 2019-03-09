@@ -33,6 +33,8 @@ private slots:
 	void on_pushButton_parL_clicked();
 	void on_pushButton_parR_clicked();
 
+	void on_pushButton_nn_clicked();//n!
+
 	void on_pushButton_C_clicked();
 	void on_pushButton_CE_clicked();
 	void on_pushButton_back_clicked();
